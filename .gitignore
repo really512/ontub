@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+out/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.apk
+*.aab
+
+# Temporary
+.tmp/
+tmp/
