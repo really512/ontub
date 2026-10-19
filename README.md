@@ -2,6 +2,8 @@
 
 Video platform project by GingerXYT.
 
+**© 2026 GingerXYT. All rights reserved.**
+
 ## Vision
 
 Ontub is planned as a real **website + mobile app + independent server**, not a single HTML page.
