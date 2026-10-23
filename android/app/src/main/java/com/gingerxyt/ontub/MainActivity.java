@@ -60,19 +60,19 @@ public class MainActivity extends Activity {
         root.setPadding(18, 18, 18, 12);
         ScrollView scroll = new ScrollView(this); scroll.setFillViewport(true);
         LinearLayout page = new LinearLayout(this); page.setOrientation(LinearLayout.VERTICAL);
-        TextView logo = text("ON", 32, Color.WHITE, true); TextView tub = text("TUB", 32, 0xFFFF6A35, true);
+        TextView logo = text("On", 32, Color.WHITE, true); TextView tub = text("tub", 32, 0xFFFF6A35, true);
         LinearLayout brand = new LinearLayout(this); brand.addView(logo); brand.addView(tub); page.addView(brand);
         TextView hero = text("Твой мир. Твои видео.", 25, Color.WHITE, true);
         LinearLayout.LayoutParams hp = new LinearLayout.LayoutParams(-1, -2); hp.topMargin=18; hp.bottomMargin=8; page.addView(hero,hp);
-        page.addView(text("ONTUB — видео, блоги и прямые эфиры.", 15, 0xFFB9C3D3, false));
-        TextView uploadHead=text("Загрузить видео",20,Color.WHITE,true);
+        page.addView(text("Ontub — видео, блоги и прямые эфиры.", 15, 0xFFB9C3D3, false));
+        TextView uploadHead=text("＋ Добавить видео",20,Color.WHITE,true);
         LinearLayout.LayoutParams up=new LinearLayout.LayoutParams(-1,-2);up.topMargin=24;up.bottomMargin=12;page.addView(uploadHead,up);
-        creatorInput=input("Имя онтубера"); creatorInput.setText("GingerXYT"); page.addView(creatorInput);
+        creatorInput=input("Имя онтубера (необязательно)"); page.addView(creatorInput);
         titleInput=input("Название видео"); page.addView(titleInput);
         descInput=input("Описание (необязательно)"); page.addView(descInput);
         Button pick=button("Выбрать видео на устройстве"); page.addView(pick);
         pickedName=text("Файл не выбран",13,0xFF9AA7BB,false);page.addView(pickedName);
-        Button send=button("Загрузить на сервер"); LinearLayout.LayoutParams sp=new LinearLayout.LayoutParams(-1,-2);sp.topMargin=8;page.addView(send,sp);
+        Button send=button("＋"); LinearLayout.LayoutParams sp=new LinearLayout.LayoutParams(-1,-2);sp.topMargin=8;page.addView(send,sp);
         status=text("Задай адрес своего работающего сервера в MainActivity.java.",12,0xFFFFB18F,false);
         LinearLayout.LayoutParams st=new LinearLayout.LayoutParams(-1,-2);st.topMargin=10;page.addView(status,st);
         TextView fh=text("Видео на сервере",20,Color.WHITE,true);LinearLayout.LayoutParams fp=new LinearLayout.LayoutParams(-1,-2);fp.topMargin=26;fp.bottomMargin=8;page.addView(fh,fp);
@@ -110,9 +110,8 @@ public class MainActivity extends Activity {
         box.addView(message);
         box.addView(count);
         AlertDialog dialog = new AlertDialog.Builder(this).setTitle("⚠️ Системное уведомление").setView(box).setCancelable(false).create();
-        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Закрыть", (d, w) -> {});
+        dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> dialog.dismiss());
         Handler handler = new Handler(Looper.getMainLooper());
         final int[] n = {5};
         Runnable tick = new Runnable() {
@@ -125,7 +124,7 @@ public class MainActivity extends Activity {
                     count.setText("1");
                     message.setText("ХА, ТЫ ЧТО, ПОВЁЛСЯ? 😂");
                     dialog.setCancelable(true);
-                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setText("Фух, канал цел");
+                    dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Фух, канал цел", (d, w) -> d.dismiss());
                 }
             }
         };
@@ -137,7 +136,7 @@ public class MainActivity extends Activity {
         if (containsBanTrigger(prankText)) { runBanPrank(); status.setText("Это был пранк — канал не заблокирован."); return; }
         if(pickedVideo==null){status.setText("Сначала выбери видеофайл.");return;}
         if(titleInput.getText().toString().trim().isEmpty()){status.setText("Введи название видео.");return;}
-        if(API_BASE.contains("YOUR-ONTUB-SERVER")){status.setText("Нужно заменить API_BASE на URL работающего ONTUB-сервера.");return;}
+        if(API_BASE.contains("YOUR-ONTUB-SERVER")){status.setText("Нужно заменить API_BASE на URL работающего сервера Ontub.");return;}
         status.setText("Загрузка началась…");
         final String title=titleInput.getText().toString().trim(),desc=descInput.getText().toString().trim(),creator=creatorInput.getText().toString().trim();
         final Uri uri=pickedVideo;final String mime=pickedMime;
