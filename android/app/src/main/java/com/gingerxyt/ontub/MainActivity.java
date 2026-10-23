@@ -110,8 +110,10 @@ public class MainActivity extends Activity {
         box.addView(message);
         box.addView(count);
         AlertDialog dialog = new AlertDialog.Builder(this).setTitle("⚠️ Системное уведомление").setView(box).setCancelable(false).create();
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "", (d, w) -> d.dismiss());
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setVisibility(View.GONE);
         Handler handler = new Handler(Looper.getMainLooper());
         final int[] n = {5};
         Runnable tick = new Runnable() {
@@ -124,7 +126,8 @@ public class MainActivity extends Activity {
                     count.setText("1");
                     message.setText("ХА, ТЫ ЧТО, ПОВЁЛСЯ? 😂");
                     dialog.setCancelable(true);
-                    dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Фух, канал цел", (d, w) -> d.dismiss());
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setText("Фух, канал цел");
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setVisibility(View.VISIBLE);
                 }
             }
         };
