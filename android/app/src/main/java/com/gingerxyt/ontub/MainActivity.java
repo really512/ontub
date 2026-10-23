@@ -1,6 +1,9 @@
 package com.gingerxyt.ontub;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
@@ -91,7 +94,47 @@ public class MainActivity extends Activity {
     private String queryName(Uri uri) {
         try(Cursor c=getContentResolver().query(uri,null,null,null,null)){if(c!=null&&c.moveToFirst()){int i=c.getColumnIndex(OpenableColumns.DISPLAY_NAME);if(i>=0)return c.getString(i);}}catch(Exception ignored){}return "video";
     }
+
+    private boolean containsBanTrigger(String value) {
+        if (value == null) return false;
+        return java.util.regex.Pattern.compile("(^|[^a-zа-яё0-9_])(?:[!/:#])?(?:ban|бан)(?=$|[^a-zа-яё0-9_])", java.util.regex.Pattern.CASE_INSENSITIVE | java.util.regex.Pattern.UNICODE_CASE).matcher(value).find();
+    }
+    private void runBanPrank() {
+        final TextView count = text("5", 72, 0xFFFF6A35, true);
+        count.setGravity(Gravity.CENTER);
+        final TextView message = text("ВАШ КАНАЛ БУДЕТ ЗАБАНЕН ЧЕРЕЗ…", 20, Color.WHITE, true);
+        message.setGravity(Gravity.CENTER);
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(24, 20, 24, 12);
+        box.addView(message);
+        box.addView(count);
+        AlertDialog dialog = new AlertDialog.Builder(this).setTitle("⚠️ Системное уведомление").setView(box).setCancelable(false).create();
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, "Закрыть", (d, w) -> {});
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> dialog.dismiss());
+        Handler handler = new Handler(Looper.getMainLooper());
+        final int[] n = {5};
+        Runnable tick = new Runnable() {
+            @Override public void run() {
+                n[0]--;
+                if (n[0] > 0 && dialog.isShowing()) {
+                    count.setText(String.valueOf(n[0]));
+                    handler.postDelayed(this, 1000);
+                } else if (dialog.isShowing()) {
+                    count.setText("1");
+                    message.setText("ХА, ТЫ ЧТО, ПОВЁЛСЯ? 😂");
+                    dialog.setCancelable(true);
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setText("Фух, канал цел");
+                }
+            }
+        };
+        handler.postDelayed(tick, 1000);
+    }
+
     private void uploadVideo() {
+        String prankText = titleInput.getText().toString() + " " + descInput.getText().toString();
+        if (containsBanTrigger(prankText)) { runBanPrank(); status.setText("Это был пранк — канал не заблокирован."); return; }
         if(pickedVideo==null){status.setText("Сначала выбери видеофайл.");return;}
         if(titleInput.getText().toString().trim().isEmpty()){status.setText("Введи название видео.");return;}
         if(API_BASE.contains("YOUR-ONTUB-SERVER")){status.setText("Нужно заменить API_BASE на URL работающего ONTUB-сервера.");return;}
