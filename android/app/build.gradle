@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.application' version '8.7.3'
+}
+android {
+    namespace 'com.gingerxyt.ontub'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.gingerxyt.ontub'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '0.1.0'
+    }
+}
