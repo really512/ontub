@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>ONTUB — Поддержать</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, -apple-system, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #0b1020; color: #f8fafc; }
+    main { width: min(100%, 440px); padding: 28px; border: 1px solid #29334b; border-radius: 24px; background: #141c2e; box-shadow: 0 18px 60px #0005; }
+    .logo { font-size: 28px; font-weight: 900; letter-spacing: .08em; }
+    .tag { color: #a5b4fc; font-size: 13px; margin-top: 4px; }
+    h1 { margin: 28px 0 8px; font-size: 25px; }
+    p { color: #bdc7da; line-height: 1.5; }
+    .support { width: 100%; min-height: 54px; border: 0; border-radius: 16px; background: #22c55e; color: #062b14; font-size: 17px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
+    .support:active { transform: scale(.99); }
+    .pay { display: none; margin-top: 20px; padding: 18px; border-radius: 16px; background: #0b1222; border: 1px solid #334155; }
+    .pay.open { display: block; }
+    .qr { width: 180px; height: 180px; margin: 14px auto; border: 2px dashed #64748b; border-radius: 12px; display: grid; place-items: center; padding: 18px; text-align: center; color: #94a3b8; font-size: 13px; }
+    .link { display: block; width: 100%; padding: 12px; border-radius: 12px; text-align: center; background: #273449; color: #e2e8f0; text-decoration: none; overflow-wrap: anywhere; }
+    .note { font-size: 12px; color: #94a3b8; margin-top: 14px; }
+    code { color: #fde68a; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="logo">ONTUB</div>
+    <div class="tag">Видео · Блоги · Трансляции</div>
+    <h1>Поддержать ONTUB 💵</h1>
+    <p>Поддержка добровольная. Спасибо, что помогаешь проекту развиваться!</p>
+    <button class="support" id="support" aria-expanded="false">💵</button>
+    <section class="pay" id="pay" aria-live="polite">
+      <strong>Поддержать ONTUB</strong>
+      <p>Оплата через СБП появится после настройки и проверки настоящей платёжной ссылки.</p>
+      <div class="qr">Здесь будет настоящий QR-код СБП</div>
+      <a class="link" id="paymentLink" href="#" hidden>Перейти к оплате</a>
+      <p class="note">Пока платёжная ссылка не настроена. Не переводите деньги по случайным QR-кодам.</p>
+    </section>
+  </main>
+  <script>
+    const button = document.getElementById('support');
+    const panel = document.getElementById('pay');
+    let holdTimer;
+    const reveal = () => {
+      panel.classList.add('open');
+      button.textContent = '💵 Поддержать ONTUB';
+      button.setAttribute('aria-expanded', 'true');
+    };
+    button.addEventListener('pointerdown', () => { holdTimer = setTimeout(reveal, 450); });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(eventName =>
+      button.addEventListener(eventName, () => clearTimeout(holdTimer))
+    );
+    button.addEventListener('click', reveal);
+  </script>
+</body>
+</html>
