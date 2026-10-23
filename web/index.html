@@ -1,58 +1,50 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111827">
-  <title>ONTUB — Поддержать</title>
-  <style>
-    :root { color-scheme: dark; font-family: system-ui, -apple-system, sans-serif; }
-    * { box-sizing: border-box; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #0b1020; color: #f8fafc; }
-    main { width: min(100%, 440px); padding: 28px; border: 1px solid #29334b; border-radius: 24px; background: #141c2e; box-shadow: 0 18px 60px #0005; }
-    .logo { font-size: 28px; font-weight: 900; letter-spacing: .08em; }
-    .tag { color: #a5b4fc; font-size: 13px; margin-top: 4px; }
-    h1 { margin: 28px 0 8px; font-size: 25px; }
-    p { color: #bdc7da; line-height: 1.5; }
-    .support { width: 100%; min-height: 54px; border: 0; border-radius: 16px; background: #22c55e; color: #062b14; font-size: 17px; font-weight: 800; cursor: pointer; touch-action: manipulation; }
-    .support:active { transform: scale(.99); }
-    .pay { display: none; margin-top: 20px; padding: 18px; border-radius: 16px; background: #0b1222; border: 1px solid #334155; }
-    .pay.open { display: block; }
-    .qr { width: 180px; height: 180px; margin: 14px auto; border: 2px dashed #64748b; border-radius: 12px; display: grid; place-items: center; padding: 18px; text-align: center; color: #94a3b8; font-size: 13px; }
-    .link { display: block; width: 100%; padding: 12px; border-radius: 12px; text-align: center; background: #273449; color: #e2e8f0; text-decoration: none; overflow-wrap: anywhere; }
-    .note { font-size: 12px; color: #94a3b8; margin-top: 14px; }
-    code { color: #fde68a; }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#111827">
+<title>ONTUB — смотри своё</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0e14;--panel:#151a24;--line:#293244;--muted:#9aa7bb;--accent:#ff6a35;font-family:system-ui,-apple-system,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f7f8fb}button,input{font:inherit}button{cursor:pointer}.top{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:16px;padding:12px clamp(12px,3vw,32px);background:#0b0e14ed;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.brand{font-size:25px;font-weight:1000;letter-spacing:-1.5px;white-space:nowrap}.brand span{color:var(--accent)}.search{display:flex;max-width:620px;flex:1;margin:auto}.search input{width:100%;min-width:0;background:#171d29;color:white;border:1px solid var(--line);border-radius:12px 0 0 12px;padding:11px 14px;outline:none}.search button,.secondary{background:#242c3b;color:white;border:1px solid var(--line);padding:10px 14px;border-radius:0 12px 12px 0}.upload,.primary{border:0;background:var(--accent);color:#1b0b04;font-weight:800;padding:11px 15px;border-radius:12px;white-space:nowrap}.layout{display:grid;grid-template-columns:210px minmax(0,1fr);max-width:1600px;margin:auto}.side{padding:20px 12px;border-right:1px solid var(--line);min-height:calc(100vh - 64px)}.nav{display:flex;gap:12px;align-items:center;width:100%;padding:12px;border:0;border-radius:12px;color:#dce3ef;background:transparent;text-align:left;margin-bottom:4px}.nav:hover,.nav.active{background:#242b39}.nav.active{color:#ff956e}.side-note{color:var(--muted);font-size:12px;line-height:1.5;padding:16px 10px}.main{padding:clamp(16px,3vw,32px);min-width:0}.hero{background:radial-gradient(ellipse at 85% 0%,#71311f 0,transparent 45%),linear-gradient(120deg,#202a3c,#141925);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,42px);margin-bottom:26px}.eyebrow{color:#ff9a77;font-size:12px;font-weight:800;letter-spacing:2px}.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.04;letter-spacing:-1.8px;margin:12px 0}.hero p{color:#c0c9d8;max-width:570px;line-height:1.6}.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.pill{border:1px solid #495369;background:#202838;color:#e7edf8;padding:8px 12px;border-radius:99px;font-size:13px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 16px}.section-head h2{font-size:21px;margin:0}.small{font-size:12px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.card{min-width:0;cursor:pointer}.thumb{aspect-ratio:16/9;border-radius:15px;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid #ffffff12;background:linear-gradient(135deg,#26354c,#7d3a37);font-size:clamp(32px,5vw,58px)}.thumb:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0005,transparent 60%)}.duration{position:absolute;z-index:1;bottom:8px;right:8px;background:#080a0dcf;border-radius:5px;padding:3px 6px;font-size:11px}.video-info{display:flex;gap:10px;padding-top:12px}.avatar{flex:0 0 38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#2b3446;font-weight:800}.video-info h3{font-size:15px;line-height:1.35;margin:0 0 6px}.video-info p{font-size:12px;line-height:1.5;color:var(--muted);margin:0}.badge{color:#7cc7ff}.empty{color:var(--muted);padding:40px 10px;text-align:center;grid-column:1/-1;border:1px dashed var(--line);border-radius:16px}.footer{color:#68758a;font-size:12px;padding:28px 0 8px}.modal{position:fixed;inset:0;z-index:10;display:none;place-items:center;background:#000b;padding:18px}.modal.open{display:grid}.dialog{width:min(100%,520px);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.dialog h2{margin:0 0 12px}.close{background:#283143;color:white;border:0;border-radius:10px;padding:8px 12px}.field{display:block;margin:14px 0 6px;color:#c5cede;font-size:13px}.dialog input,.dialog textarea{width:100%;background:#0c111b;border:1px solid var(--line);color:white;border-radius:10px;padding:11px}.dialog textarea{min-height:75px;resize:vertical}.dialog .primary{margin-top:14px;width:100%}.help{font-size:12px;line-height:1.5;color:var(--muted)}.player{width:100%;max-height:60vh;background:#000;border-radius:12px;margin-top:12px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.actions button{border:1px solid var(--line);background:#222b3a;color:white;border-radius:10px;padding:9px 12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#eef2f8;color:#111827;padding:12px 16px;border-radius:12px;display:none;z-index:20;box-shadow:0 8px 30px #0008;max-width:90vw}.toast.show{display:block}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{grid-template-columns:170px minmax(0,1fr)}}
+@media(max-width:700px){.top{gap:9px;flex-wrap:wrap}.brand{font-size:22px}.search{order:3;flex-basis:100%;max-width:none}.upload{margin-left:auto}.layout{display:block}.side{position:sticky;top:111px;z-index:4;display:flex;gap:4px;min-height:0;overflow-x:auto;padding:8px 10px;background:#0b0e14;border-right:0;border-bottom:1px solid var(--line)}.nav{white-space:nowrap;width:auto;flex:0 0 auto;padding:9px 12px}.side-note{display:none}.main{padding:16px 12px}.grid{gap:15px}.video-info{gap:8px}.avatar{flex-basis:32px;height:32px}.video-info h3{font-size:13px}.video-info p{font-size:11px}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.thumb{aspect-ratio:16/8}.hero{padding:22px}.upload{padding:10px 12px}}
+</style>
 </head>
 <body>
-  <main>
-    <div class="logo">ONTUB</div>
-    <div class="tag">Видео · Блоги · Трансляции</div>
-    <h1>Поддержать ONTUB 💵</h1>
-    <p>Поддержка добровольная. Спасибо, что помогаешь проекту развиваться!</p>
-    <button class="support" id="support" aria-expanded="false">💵</button>
-    <section class="pay" id="pay" aria-live="polite">
-      <strong>Поддержать ONTUB</strong>
-      <p>Оплата через СБП появится после настройки и проверки настоящей платёжной ссылки.</p>
-      <div class="qr">Здесь будет настоящий QR-код СБП</div>
-      <a class="link" id="paymentLink" href="#" hidden>Перейти к оплате</a>
-      <p class="note">Пока платёжная ссылка не настроена. Не переводите деньги по случайным QR-кодам.</p>
-    </section>
-  </main>
-  <script>
-    const button = document.getElementById('support');
-    const panel = document.getElementById('pay');
-    let holdTimer;
-    const reveal = () => {
-      panel.classList.add('open');
-      button.textContent = '💵 Поддержать ONTUB';
-      button.setAttribute('aria-expanded', 'true');
-    };
-    button.addEventListener('pointerdown', () => { holdTimer = setTimeout(reveal, 450); });
-    ['pointerup', 'pointerleave', 'pointercancel'].forEach(eventName =>
-      button.addEventListener(eventName, () => clearTimeout(holdTimer))
-    );
-    button.addEventListener('click', reveal);
-  </script>
-</body>
-</html>
+<header class="top"><a class="brand" href="#" aria-label="ONTUB главная" style="text-decoration:none;color:inherit">ON<span>TUB</span></a><form class="search" id="searchForm"><input id="searchInput" aria-label="Поиск" placeholder="Поиск видео и онблогеров…"><button type="submit">⌕</button></form><button class="upload" id="uploadOpen">＋ Загрузить</button></header>
+<div class="layout"><aside class="side" aria-label="Навигация">
+<button class="nav active" data-view="home">⌂ Главная</button><button class="nav" data-view="shorts">▣ Короткие</button><button class="nav" data-view="subscriptions">▤ Подписки</button><button class="nav" data-view="live">🔴 Трансляции</button><button class="nav" data-view="saved">♡ Понравилось</button>
+<div class="side-note">ONTUB — видео, блоги и прямые эфиры.<br><br>Твой контент. Твоё сообщество.</div></aside>
+<main class="main"><section class="hero"><div class="eyebrow">ЗНАКОМЬСЯ С ONTUB</div><h1>Твой мир.<br>Твои видео.</h1><p>Смотри видео, открывай новых авторов и представляй, каким будет твой собственный канал на ONTUB.</p><div class="pills"><span class="pill">🎬 Видео</span><span class="pill">✍️ Онблогеры</span><span class="pill">🔴 Прямые эфиры</span></div></section>
+<div class="section-head"><h2 id="feedTitle">Рекомендуем</h2><span class="small" id="feedCount">ДЕМО-КАТАЛОГ</span></div><section class="grid" id="grid" aria-live="polite"></section><div class="footer">ONTUB · ранний прототип GingerXYT · 2026<br>Это демонстрация интерфейса. Аккаунты, реальные загрузки на сервер, стримы и платежи пока не подключены.</div></main></div>
+<div class="modal" id="uploadModal" role="dialog" aria-modal="true" aria-labelledby="uploadTitle"><div class="dialog"><div class="dialog-head"><h2 id="uploadTitle">Загрузить видео</h2><button class="close" data-close="uploadModal">Закрыть</button></div><p class="help">Пока видео выбирается только для локального предпросмотра в этом браузере. На сервер оно не отправляется.</p><form id="uploadForm"><label class="field" for="videoTitle">Название</label><input id="videoTitle" maxlength="100" required placeholder="Моё новое видео"><label class="field" for="videoDesc">Описание</label><textarea id="videoDesc" maxlength="300" placeholder="Расскажи о видео"></textarea><label class="field" for="videoFile">Видеофайл</label><input id="videoFile" type="file" accept="video/*" required><button class="primary" type="submit">Показать в моём демо-канале</button></form></div></div>
+<div class="modal" id="playerModal" role="dialog" aria-modal="true" aria-labelledby="playerTitle"><div class="dialog"><div class="dialog-head"><h2 id="playerTitle">Видео</h2><button class="close" data-close="playerModal">Закрыть</button></div><video id="player" class="player" controls playsinline></video><p id="playerDesc" class="help"></p><div class="actions"><button id="likeButton">♡ Нравится <span id="likeCount">0</span></button><button id="subscribeButton">＋ Подписаться</button><button id="shareButton">↗ Поделиться</button></div><p class="help" id="playerNotice">Действия работают только в демо на этом устройстве.</p></div></div>
+<div class="modal" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="supportTitle"><div class="dialog"><div class="dialog-head"><h2 id="supportTitle">Поддержать ONTUB 💵</h2><button class="close" data-close="supportModal">Закрыть</button></div><p>Спасибо, что веришь в проект! Поддержка будет добровольной.</p><div class="empty">QR-код СБП и настоящая платёжная ссылка появятся после подключения безопасного платёжного сервиса.</div><p class="help">Пока оплата не подключена. Не переводите деньги по случайным ссылкам.</p></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const demos=[
+{id:'d1',title:'Добро пожаловать в ONTUB!',creator:'GingerXYT',views:'демо-видео',time:'ONTUB',emoji:'▶️',colors:['#ff6a35','#512b63'],duration:'0:18',desc:'Первый взгляд на будущую видеоплатформу ONTUB.'},
+{id:'d2',title:'MM2 моменты, которые выглядят нереально 💀',creator:'PixelFox',views:'демо-ролик',time:'ONTUB',emoji:'🔪',colors:['#2b365c','#a53c47'],duration:'0:32',desc:'Пример карточки игрового видео.'},
+{id:'d3',title:'Roblox: смешные моменты',creator:'LimePlay',views:'демо-ролик',time:'ONTUB',emoji:'🎮',colors:['#177b72','#183d5c'],duration:'1:04',desc:'Пример игрового ролика в ленте.'},
+{id:'d4',title:'Как я строю свой игровой мир',creator:'CraftRoom',views:'демо-видео',time:'ONTUB',emoji:'🧱',colors:['#75502a','#315c45'],duration:'2:10',desc:'Пример видео о строительстве.'},
+{id:'d5',title:'Новый уровень — новая попытка',creator:'DashNova',views:'демо-ролик',time:'ONTUB',emoji:'⚡',colors:['#234c81','#582b78'],duration:'0:45',desc:'Пример короткого игрового видео.'},
+{id:'d6',title:'Вечерний эфир: общаемся',creator:'ChatFox',views:'пример эфира',time:'ONTUB',emoji:'🔴',colors:['#852f36','#422d59'],duration:'LIVE',desc:'Макет карточки будущей трансляции.'}
+];
+let videos=[...demos],current=null,view='home',saved=new Set(),subscribed=new Set(),liked=new Set(),toastTimer;
+const grid=document.getElementById('grid');
+function toast(s){const t=document.getElementById('toast');t.textContent=s;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600)}
+function showModal(id){document.getElementById(id).classList.add('open')}
+function hideModal(id){document.getElementById(id).classList.remove('open');if(id==='playerModal'){const p=document.getElementById('player');p.pause()}}
+function render(list=videos){grid.innerHTML='';if(!list.length){grid.innerHTML='<div class="empty">Ничего не найдено. Попробуй другой запрос.</div>';return}list.forEach(v=>{const c=document.createElement('article');c.className='card';c.tabIndex=0;c.setAttribute('role','button');c.setAttribute('aria-label','Открыть '+v.title);const th=document.createElement('div');th.className='thumb';th.style.background='linear-gradient(135deg,'+(v.colors||['#29374e','#5a3458']).join(',')+')';th.textContent=v.emoji||'🎬';const du=document.createElement('span');du.className='duration';du.textContent=v.duration||'DEMO';th.append(du);const info=document.createElement('div');info.className='video-info';const av=document.createElement('div');av.className='avatar';av.textContent=(v.creator||'O').slice(0,1).toUpperCase();const text=document.createElement('div');const h=document.createElement('h3');h.textContent=v.title;const p=document.createElement('p');p.textContent=(v.creator||'Онблогер')+' · '+(v.views||'0 просмотров')+'<br>'+((v.local?'Ваш демо-ролик':'Демонстрационный контент'));text.append(h,p);info.append(av,text);c.append(th,info);const open=()=>openVideo(v);c.addEventListener('click',open);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});grid.append(c)})}
+function openVideo(v){current=v;document.getElementById('playerTitle').textContent=v.title;document.getElementById('playerDesc').textContent=(v.creator||'Онблогер')+' — '+(v.desc||'');const p=document.getElementById('player');p.pause();p.removeAttribute('src');if(v.url){p.src=v.url;p.load()}document.getElementById('likeCount').textContent=v.likes||0;document.getElementById('likeButton').textContent=(liked.has(v.id)?'♥':'♡')+' Нравится '+(v.likes||0);document.getElementById('subscribeButton').textContent=(subscribed.has(v.creator)?'✓ Вы подписаны':'＋ Подписаться');showModal('playerModal')}
+document.getElementById('likeButton').onclick=()=>{if(!current)return;if(liked.has(current.id)){liked.delete(current.id);current.likes=Math.max(0,(current.likes||0)-1)}else{liked.add(current.id);current.likes=(current.likes||0)+1}document.getElementById('likeCount').textContent=current.likes;document.getElementById('likeButton').textContent=(liked.has(current.id)?'♥':'♡')+' Нравится '+current.likes;toast('Отметка сохранена только в демо')};
+document.getElementById('subscribeButton').onclick=()=>{if(!current)return;if(subscribed.has(current.creator)){subscribed.delete(current.creator)}else{subscribed.add(current.creator)}document.getElementById('subscribeButton').textContent=(subscribed.has(current.creator)?'✓ Вы подписаны':'＋ Подписаться');toast('Подписки пока хранятся только в этой странице')};
+document.getElementById('shareButton').onclick=async()=>{try{await navigator.clipboard.writeText(location.href+'#'+(current?.id||''));toast('Ссылка на демо скопирована')}catch{toast('Скопируй адрес страницы из браузера')}};
+document.getElementById('searchForm').onsubmit=e=>{e.preventDefault();const q=document.getElementById('searchInput').value.trim().toLowerCase();document.getElementById('feedTitle').textContent=q?'Результаты поиска':'Рекомендуем';render(videos.filter(v=>(v.title+' '+v.creator+' '+(v.desc||'')).toLowerCase().includes(q)))};
+document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>{view=b.dataset.view;document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x===b));const titles={home:'Рекомендуем',shorts:'Короткие видео',subscriptions:'Подписки',live:'Трансляции',saved:'Понравилось'};document.getElementById('feedTitle').textContent=titles[view];let list=videos;if(view==='shorts')list=videos.filter(v=>v.duration!=='LIVE'&&(v.duration||'').length<=4);if(view==='subscriptions')list=videos.filter(v=>subscribed.has(v.creator));if(view==='live')list=videos.filter(v=>v.duration==='LIVE');if(view==='saved')list=videos.filter(v=>liked.has(v.id));render(list)});
+document.getElementById('uploadOpen').onclick=()=>showModal('uploadModal');
+document.getElementById('uploadForm').onsubmit=e=>{e.preventDefault();const file=document.getElementById('videoFile').files[0];if(!file)return;if(!file.type.startsWith('video/')){toast('Выбери видеофайл');return}const url=URL.createObjectURL(file);const v={id:'local'+Date.now(),title:document.getElementById('videoTitle').value.trim(),creator:'Ваш канал',views:'0 просмотров',time:'сейчас',emoji:'🎬',colors:['#ff6a35','#263a5c'],duration:'DEMO',desc:document.getElementById('videoDesc').value,local:true,url,likes:0};videos.unshift(v);hideModal('uploadModal');e.target.reset();view='home';document.querySelector('[data-view="home"]').click();toast('Добавлено в демо-ленту. На сервер не загружено.');};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>hideModal(b.dataset.close));document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)hideModal(m.id)}));document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal.open').forEach(m=>hideModal(m.id))});
+render();
+</script>
+</body></html>
